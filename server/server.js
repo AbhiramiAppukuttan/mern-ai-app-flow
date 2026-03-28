@@ -27,14 +27,14 @@ app.post("/api/ask-ai", async (req, res) => {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "meta-llama/llama-3-8b-instruct",
+        model: "openchat/openchat-3.5-0106:free",
         messages: [{ role: "user", content: prompt }],
       },
       {
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json",
-          "HTTP-Referer": "mern-ai-app-flow.vercel.app",
+          "HTTP-Referer": "https://mern-ai-app-flow.vercel.app",
           "X-Title": "MERN AI App",
         },
       }
