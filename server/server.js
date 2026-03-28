@@ -27,7 +27,7 @@ app.post("/api/ask-ai", async (req, res) => {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "openchat/openchat-3.5-0106:free",
+        model: "openchat/openchat-3.5-0106",
         messages: [{ role: "user", content: prompt }],
       },
       {
