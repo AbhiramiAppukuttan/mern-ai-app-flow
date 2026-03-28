@@ -15,7 +15,7 @@ function App() {
       setLoading(true);
       setStatus("");
 
-      const res = await axios.post("http://localhost:5000/api/ask-ai", {
+      const res = await axios.post("https://mern-ai-app-flow.onrender.com/api/ask-ai", {
         prompt,
       });
 
@@ -31,7 +31,7 @@ function App() {
   //  SAVE DATA
   const saveData = async () => {
   try {
-    await axios.post("http://localhost:5000/api/save", {
+    await axios.post("https://mern-ai-app-flow.onrender.com/api/save", {
       prompt,
       response,
     });

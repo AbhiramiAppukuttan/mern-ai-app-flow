@@ -20,7 +20,6 @@ app.get("/", (req, res) => {
 });
 
 
-
 app.post("/api/ask-ai", async (req, res) => {
   try {
     const { prompt } = req.body;
@@ -35,7 +34,7 @@ app.post("/api/ask-ai", async (req, res) => {
         headers: {
           Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
           "Content-Type": "application/json",
-          "HTTP-Referer": "http://localhost:3000",
+          "HTTP-Referer": "mern-ai-app-flow.vercel.app",
           "X-Title": "MERN AI App",
         },
       }
