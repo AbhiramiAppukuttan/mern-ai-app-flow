@@ -7,19 +7,21 @@ require("dotenv").config();
 
 const app = express();
 
-
+// Connect DB
 connectDB();
 
-
-app.use(cors());
+// Middlewares
+app.use(cors({
+  origin: "*",
+}));
 app.use(express.json());
 
-
+// Test route
 app.get("/", (req, res) => {
   res.send("Server running...");
 });
 
-
+// 🔥 AI ROUTE
 app.post("/api/ask-ai", async (req, res) => {
   try {
     const { prompt } = req.body;
@@ -27,7 +29,7 @@ app.post("/api/ask-ai", async (req, res) => {
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "openchat/openchat-3.5-0106",
+        model: "openchat/openchat-3.5-0106:free", // ✅ working free model
         messages: [{ role: "user", content: prompt }],
       },
       {
@@ -50,8 +52,7 @@ app.post("/api/ask-ai", async (req, res) => {
   }
 });
 
-
-
+// 💾 SAVE ROUTE
 app.post("/api/save", async (req, res) => {
   try {
     const { prompt, response } = req.body;
@@ -67,8 +68,9 @@ app.post("/api/save", async (req, res) => {
   }
 });
 
+// 🔥 IMPORTANT FOR RENDER
+const PORT = process.env.PORT || 5000;
 
-
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
